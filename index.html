@@ -45,7 +45,7 @@
         h1 {
             color: white;
             font-size: 3rem;
-            margin-bottom: 30px;
+            margin-bottom: 15px;
             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
             animation: fadeIn 1.5s ease-out;
             font-weight: 700;
@@ -250,6 +250,7 @@
             color: var(--rosa-scuro);
             cursor: pointer;
             transition: color 0.3s;
+            z-index: 101;
         }
 
         .close-letter:hover {
@@ -266,6 +267,7 @@
             position: relative;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             overflow: hidden;
+            border: 5px solid white;
         }
 
         .letter-image::before {
@@ -286,7 +288,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 8px;
+            border-radius: 4px;
         }
 
         /* Cuori fluttuanti */
@@ -487,13 +489,13 @@
                 
                 <p>Io lo so di non essere semplice. Lo so che a volte mi incasino da solo, che mi chiudo, che reagisco male, che mi porto dietro ferite che mi fanno scattare anche quando non servirebbe. E so che ti faccio arrabbiare. Ma quello che mi colpisce ogni volta è che tu non scappi mai. Ti avvicini, mi guardi in faccia, mi dici le cose come stanno. Non molli mai il filo, nemmeno quando ti faccio perdere la pazienza.</p>
                 
-                <p>E tra una discussione e un bacio, tra un chiarimento e un “resta qui”, abbiamo iniziato a costruire qualcosa che per me conta davvero. Perché sei la prima persona che mi fa sentire che anche quando litighiamo non siamo contro, siamo insieme. Siamo noi due che cerchiamo di capirci, anche quando fa male.</p>
+                <p>E tra una discussione e un bacio, tra un chiarimento e un "resta qui", abbiamo iniziato a costruire qualcosa che per me conta davvero. Perché sei la prima persona che mi fa sentire che anche quando litighiamo non siamo contro, siamo insieme. Siamo noi due che cerchiamo di capirci, anche quando fa male.</p>
                 
                 <p>Ed è per questo che mi torna sempre in mente quella scena che ci rappresenta senza nominarla: una coniglietta che non arretra davanti a una volpe. Una che vede oltre la furbizia, oltre la facciata, oltre tutto quello che io uso per proteggermi. E quella volpe, per la prima volta, si lascia avvicinare. Non perché è debole, ma perché ha finalmente trovato qualcuno che non la tratta come un pericolo, ma come qualcuno che vale la pena conoscere sul serio.</p>
                 
                 <p>Tu mi hai visto, davvero. Con i miei difetti, le mie paure, i miei modi strani, i miei silenzi e le mie esplosioni. E io ti vedo, con la tua dolceza, le tue insicurezze, la tua forza enorme, quella che usi per affrontarmi e affrontare il mondo allo stesso tempo. E nonostante tutto, ci scegliamo. Ogni giorno. Anche quando ci facciamo arrabbiare. Anche quando non ci capiamo subito. Anche quando sarebbe più facile chiudere e basta.</p>
 
-                <p>Un mese così non è poco. È vero. È vivo. È costruito pezzo per pezzo, parola per parola, litigio per litigio, carezza per carezza. E se questo è solo l’inizio, allora io voglio tutto il resto. I giorni belli, quelli brutti, quelli in cui ridiamo e quelli in cui ci urliamo addosso e poi ci stringiamo più forte. Voglio crescere insieme a te. Migliorare insieme a te. E restare, sempre.</p>
+                <p>Un mese così non è poco. È vero. È vivo. È costruito pezzo per pezzo, parola per parola, litigio per litigio, carezza per carezza. E se questo è solo l'inizio, allora io voglio tutto il resto. I giorni belli, quelli brutti, quelli in cui ridiamo e quelli in cui ci urliamo addosso e poi ci stringiamo più forte. Voglio crescere insieme a te. Migliorare insieme a te. E restare, sempre.</p>
                 
                 <p class="letter-signature">Con tutto l'amore del tuo Nick 🦊<br>Per sempre tuo G.</p>
             </div>
@@ -530,6 +532,21 @@
             }, 300);
         });
 
+        // Chiusura della lettera cliccando fuori
+        document.getElementById('letterContainer').addEventListener('click', function(e) {
+            if (e.target === this) {
+                const letterContainer = document.getElementById('letterContainer');
+                const envelope = document.querySelector('.envelope');
+                
+                letterContainer.classList.remove('open');
+                
+                setTimeout(() => {
+                    envelope.classList.remove('open');
+                    document.querySelector('.instructions').style.opacity = '1';
+                }, 300);
+            }
+        });
+
         // Funzione per creare cuori fluttuanti
         function createFloatingHearts() {
             const container = document.getElementById('floatingHearts');
@@ -556,9 +573,20 @@
         
         // Cuori fluttuanti iniziali
         createFloatingHearts();
+        
+        // Aggiungi musica di sottofondo (opzionale)
+        const audio = new Audio();
+        audio.src = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"; // Sostituisci con un file audio romantico
+        audio.loop = true;
+        
+        // Avvia la musica quando si apre la lettera
+        document.getElementById('envelope').addEventListener('click', function() {
+            // audio.play().catch(e => console.log("Autoplay non permesso senza interazione utente"));
+        });
     </script>
 </body>
 </html>
+
 
 
 
