@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="https://parspng.com/wp-content/uploads/2021/11/hearpng.parspng.com-7.png" type="image/png">
-    <title>Il Nostro Primo Mese Insieme</title>
+    <title>Quasi... 4 Mesi Insieme - La Nostra Storia</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Caveat:wght@400;500;600&family=Dancing+Script:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Reset e stili base */
+        /* Reset e variabili */
         * {
             margin: 0;
             padding: 0;
@@ -15,61 +18,183 @@
         }
 
         :root {
-            --rosa-chiaro: #ffebf0;
-            --rosa: #ffb6c1;
-            --rosa-scuro: #ff69b4;
-            --rosso: #ff4d4d;
-            --bianco: #ffffff;
+            --primary: #FF3366;
+            --secondary: #FF6B9D;
+            --accent: #FFCC00;
+            --dark: #0A0A14;
+            --light: #FFFFFF;
+            --soft-pink: #FFF5F7;
+            --glass: rgba(255, 255, 255, 0.08);
+            --glass-dark: rgba(10, 10, 20, 0.95);
+            --gradient: linear-gradient(135deg, #FF3366, #FF6B9D, #FFCC00);
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #ff6b6b, #ff8e8e, #ffb6c1);
+            font-family: 'Inter', sans-serif;
+            background: var(--dark);
+            color: var(--light);
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            color: #333;
             overflow-x: hidden;
+            position: relative;
         }
 
-        .container {
+        /* Sfondo animato */
+        .dynamic-background {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            max-width: 800px;
-            text-align: center;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
         }
 
-        /* Titolo */
-        h1 {
-            color: white;
-            font-size: 3rem;
-            margin-bottom: 15px;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
-            animation: fadeIn 1.5s ease-out;
+        .gradient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.4;
+            animation: orb-float 25s infinite linear;
+        }
+
+        .orb-1 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, #FF3366, transparent 70%);
+            top: -100px;
+            left: -100px;
+        }
+
+        .orb-2 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, #FF6B9D, transparent 70%);
+            bottom: -200px;
+            right: -200px;
+            animation-delay: -10s;
+        }
+
+        .orb-3 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, #FFCC00, transparent 70%);
+            top: 50%;
+            left: 70%;
+            animation-delay: -5s;
+        }
+
+        /* Container principale */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .main-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.8rem;
             font-weight: 700;
-            letter-spacing: 1px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+            line-height: 1.1;
+            position: relative;
+            display: inline-block;
+        }
+
+        .main-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
         }
 
         .subtitle {
-            color: white;
-            font-size: 1.2rem;
-            margin-bottom: 40px;
-            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
-            animation: fadeIn 2s ease-out;
-            font-style: italic;
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 2rem;
+            font-weight: 300;
+            letter-spacing: 1px;
         }
 
-        /* Envelope */
+        /* Timer */
+        .love-timer {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 4rem auto;
+            max-width: 900px;
+        }
+
+        .timer-unit {
+            text-align: center;
+            position: relative;
+            padding: 2rem 1.5rem;
+            min-width: 160px;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .timer-unit:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(255, 51, 102, 0.2);
+        }
+
+        .timer-value {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .timer-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-top: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Busta */
+        .envelope-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 5rem 0;
+        }
+
         .envelope-container {
             position: relative;
-            width: 320px;
-            height: 230px;
-            margin: 0 auto 40px;
-            perspective: 1000px;
+            width: 400px;
+            height: 280px;
+            perspective: 1500px;
             cursor: pointer;
-            z-index: 10;
+            margin-bottom: 2rem;
         }
 
         .envelope {
@@ -77,11 +202,11 @@
             height: 100%;
             position: relative;
             transform-style: preserve-3d;
-            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: transform 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
         }
 
         .envelope.open {
-            transform: rotateX(180deg);
+            transform: rotateX(180deg) translateY(-40px);
         }
 
         .envelope-front, .envelope-back {
@@ -89,12 +214,14 @@
             width: 100%;
             height: 100%;
             backface-visibility: hidden;
-            border-radius: 12px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            overflow: hidden;
         }
 
         .envelope-front {
-            background: var(--rosso);
+            background: linear-gradient(145deg, rgba(255, 51, 102, 0.9), rgba(255, 107, 157, 0.9));
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -102,197 +229,401 @@
         }
 
         .envelope-back {
-            background: var(--rosa-scuro);
+            background: linear-gradient(145deg, rgba(255, 107, 157, 0.9), rgba(255, 204, 0, 0.9));
+            backdrop-filter: blur(20px);
             transform: rotateX(180deg);
         }
 
         .envelope-flap {
             position: absolute;
             top: 0;
-            width: 0;
-            height: 0;
-            border-left: 160px solid transparent;
-            border-right: 160px solid transparent;
-            border-top: 115px solid #ff3333;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(145deg, rgba(255, 51, 102, 0.95), rgba(255, 107, 157, 0.95));
+            clip-path: polygon(0 0, 100% 0, 50% 55%);
             z-index: 3;
-            transform-origin: top;
-            transition: transform 0.5s ease-in-out;
-            border-radius: 12px 12px 0 0;
+            transition: all 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            border-radius: 20px 20px 0 0;
         }
 
         .envelope.open .envelope-flap {
-            transform: rotateX(180deg);
+            transform: rotateX(180deg) translateY(-30px);
+            opacity: 0.8;
         }
 
-        .heart {
+        .envelope-heart {
             position: absolute;
-            top: 40px;
+            top: 50%;
             left: 50%;
-            transform: translateX(-50%);
-            width: 70px;
-            height: 70px;
-            background-color: var(--bianco);
-            transform: rotate(45deg);
-            animation: heartbeat 1.5s infinite;
+            transform: translate(-50%, -50%);
+            width: 120px;
+            height: 120px;
+            background: var(--light);
+            clip-path: path("M60,20 C80,0 120,20 120,50 C120,80 80,110 60,130 C40,110 0,80 0,50 C0,20 40,0 60,20 Z");
+            animation: heart-pulse 2s infinite ease-in-out;
             z-index: 4;
         }
 
-        .heart:before,
-        .heart:after {
-            content: '';
-            width: 70px;
-            height: 70px;
-            background-color: var(--bianco);
-            border-radius: 50%;
-            position: absolute;
+        .open-instruction {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            padding: 1.2rem 3rem;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            animation: gentle-pulse 3s infinite;
+            cursor: pointer;
+            transition: all 0.3s;
         }
 
-        .heart:before {
-            top: -35px;
-            left: 0;
+        .open-instruction:hover {
+            background: rgba(255, 51, 102, 0.2);
+            transform: scale(1.05);
         }
 
-        .heart:after {
-            top: 0;
-            left: -35px;
-        }
-
-        /* Lettera */
-        .letter-container {
+        /* Overlay lettera - MODIFICATO PER VISIBILITÀ */
+        .letter-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
             display: flex;
-            align-items: center;
+            align-items: flex-start; /* Cambiato da center a flex-start */
             justify-content: center;
-            z-index: 100;
+            z-index: 10000;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.5s ease;
+            transition: all 0.6s ease;
             padding: 20px;
+            overflow-y: auto; /* Permette lo scroll verticale */
         }
 
-        .letter-container.open {
+        .letter-overlay.active {
             opacity: 1;
             visibility: visible;
         }
 
-        .letter {
-            background: var(--rosa-chiaro);
+        .letter-container {
             width: 100%;
-            max-width: 700px;
-            max-height: 90vh;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-            position: relative;
-            transform: scale(0.8);
-            transition: transform 0.5s ease;
-            overflow-y: auto;
-        }
-
-        .letter-container.open .letter {
-            transform: scale(1);
-        }
-
-        .letter-header {
+            max-width: 1100px;
+            min-height: auto; /* Altezza automatica */
+            background: var(--glass-dark);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            overflow: hidden;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 2px dashed var(--rosa-scuro);
+            flex-direction: column;
+            transform: scale(0.9) translateY(60px);
+            opacity: 0;
+            transition: all 0.8s ease;
+            margin: 40px 0; /* Margine per scroll */
+        }
+
+        .letter-overlay.active .letter-container {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
+
+        /* Header lettera */
+        .letter-header {
+            padding: 2.5rem 3rem 1.5rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: linear-gradient(to bottom, rgba(255, 51, 102, 0.15), transparent);
         }
 
         .letter-title {
-            color: var(--rosso);
-            font-size: 2.2rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
             font-weight: 700;
-            text-align: left;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
         }
 
         .letter-date {
-            color: var(--rosa-scuro);
             font-size: 1.1rem;
-            font-style: italic;
+            color: rgba(255, 255, 255, 0.7);
+            font-family: 'Caveat', cursive;
         }
 
+        /* Contenuto lettera - ALTEZZA AUTOMATICA */
         .letter-content {
-            text-align: left;
-            line-height: 1.8;
-            font-size: 1.1rem;
+            padding: 0 3rem 3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
         }
 
-        .letter-content p {
-            margin-bottom: 20px;
-            text-indent: 20px;
+        /* Carosello sopra la lettera */
+        .carousel-section {
+            padding: 2rem;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 2rem;
         }
 
-        .letter-signature {
-            margin-top: 30px;
-            text-align: right;
-            font-style: italic;
-            color: var(--rosso);
-            font-size: 1.3rem;
-            font-weight: bold;
-        }
-
-        .close-letter {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            background: none;
-            border: none;
+        .carousel-title {
+            font-family: 'Playfair Display', serif;
             font-size: 1.8rem;
-            color: var(--rosa-scuro);
-            cursor: pointer;
-            transition: color 0.3s;
-            z-index: 101;
+            margin-bottom: 1.5rem;
+            color: var(--light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .close-letter:hover {
-            color: var(--rosso);
+        .carousel-title i {
+            color: var(--primary);
         }
 
-        /* Immagine con graffetta */
-        .letter-image {
-            float: right;
-            width: 180px;
-            height: 180px;
-            margin: 10px 0 20px 25px;
-            border-radius: 8px;
+        .carousel-container {
             position: relative;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
             overflow: hidden;
-            border: 5px solid white;
+            height: 350px; /* Altezza ridotta per visibilità */
         }
 
-        .letter-image::before {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 30px;
-            height: 40px;
-            background: #a0a0a0;
-            border-radius: 50% 50% 0 0;
-            z-index: 2;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        .carousel-track {
+            display: flex;
+            height: 100%;
+            transition: transform 0.8s ease;
         }
 
-        .letter-image img {
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .carousel-slide img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 4px;
+            filter: brightness(0.9);
+            transition: filter 0.3s;
         }
 
-        /* Cuori fluttuanti */
-        .floating-hearts {
+        .carousel-slide:hover img {
+            filter: brightness(1);
+        }
+
+        .slide-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 1.5rem;
+            color: white;
+        }
+
+        .slide-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .slide-date {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .carousel-dot.active {
+            background: var(--primary);
+            transform: scale(1.3);
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-btn:hover {
+            background: rgba(255, 51, 102, 0.5);
+        }
+
+        .carousel-prev {
+            left: 15px;
+        }
+
+        .carousel-next {
+            right: 15px;
+        }
+
+        /* Lettera che si adatta al contenuto */
+        .letter-paper {
+            background: rgba(255, 245, 247, 0.03);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .letter-paper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        }
+
+        .letter-text {
+            line-height: 1.8;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.95);
+            font-family: 'Inter', sans-serif;
+            text-align: justify;
+        }
+
+        .letter-text p {
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-left: 1.8rem;
+        }
+
+        .letter-text p::before {
+            content: '♥';
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        .letter-signature {
+            margin-top: 3rem;
+            text-align: right;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .signature-name {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.8rem;
+            color: var(--light);
+            display: block;
+            margin-top: 0.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .signature-emojis {
+            position: absolute;
+            right: 0;
+            top: -10px;
+            font-size: 1.8rem;
+            opacity: 0.7;
+        }
+
+        /* Player Spotify con iframe */
+        .music-section {
+            padding: 2rem;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .player-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .player-title i {
+            color: #1DB954;
+        }
+
+        .spotify-player-container {
+            border-radius: 15px;
+            overflow: hidden;
+            background: #181818;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Chiudi bottone */
+        .close-letter {
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            width: 55px;
+            height: 55px;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--light);
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 100001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-letter:hover {
+            background: rgba(255, 51, 102, 0.3);
+            transform: rotate(90deg);
+        }
+
+        /* Pioggia di cuori */
+        .heart-rain {
             position: fixed;
             top: 0;
             left: 0;
@@ -302,294 +633,489 @@
             z-index: -1;
         }
 
-        .floating-heart {
+        .falling-heart {
             position: absolute;
-            width: 20px;
-            height: 20px;
-            background-color: rgba(255, 255, 255, 0.7);
-            transform: rotate(45deg);
+            color: var(--primary);
             opacity: 0;
-        }
-
-        .floating-heart:before,
-        .floating-heart:after {
-            content: '';
-            width: 20px;
-            height: 20px;
-            background-color: rgba(255, 255, 255, 0.7);
-            border-radius: 50%;
-            position: absolute;
-        }
-
-        .floating-heart:before {
-            top: -10px;
-            left: 0;
-        }
-
-        .floating-heart:after {
-            top: 0;
-            left: -10px;
-        }
-
-        /* Istruzioni */
-        .instructions {
-            color: white;
-            margin-top: 20px;
-            font-size: 1.2rem;
-            animation: pulse 2s infinite;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+            animation: heart-fall linear infinite;
         }
 
         /* Animazioni */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes orb-float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(30px, 30px) rotate(90deg); }
+            50% { transform: translate(0, 60px) rotate(180deg); }
+            75% { transform: translate(-30px, 30px) rotate(270deg); }
         }
 
-        @keyframes heartbeat {
-            0% { transform: translateX(-50%) rotate(45deg) scale(1); }
-            25% { transform: translateX(-50%) rotate(45deg) scale(1.1); }
-            50% { transform: translateX(-50%) rotate(45deg) scale(1); }
-            75% { transform: translateX(-50%) rotate(45deg) scale(1.05); }
-            100% { transform: translateX(-50%) rotate(45deg) scale(1); }
+        @keyframes heart-pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            25% { transform: translate(-50%, -50%) scale(1.1); }
+            50% { transform: translate(-50%, -50%) scale(1); }
+            75% { transform: translate(-50%, -50%) scale(1.05); }
         }
 
-        @keyframes pulse {
-            0% { opacity: 0.7; }
+        @keyframes gentle-pulse {
+            0%, 100% { opacity: 0.7; }
             50% { opacity: 1; }
-            100% { opacity: 0.7; }
         }
 
-        @keyframes float {
-            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.7; }
-            90% { opacity: 0.7; }
-            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        @keyframes heart-fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Scrollbar personalizzata */
+        .letter-overlay::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .letter-overlay::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .letter-overlay::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
         }
 
         /* Responsive */
+        @media (max-width: 1024px) {
+            .main-title { font-size: 3.5rem; }
+            .love-timer { flex-wrap: wrap; gap: 1rem; }
+            .timer-unit { min-width: 140px; }
+            .carousel-container { height: 300px; }
+            .letter-title { font-size: 2.5rem; }
+        }
+
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-            
-            .envelope-container {
-                width: 280px;
-                height: 200px;
-            }
-            
-            .envelope-flap {
-                border-left: 140px solid transparent;
-                border-right: 140px solid transparent;
-                border-top: 100px solid #ff3333;
-            }
-            
-            .letter {
-                padding: 20px;
-            }
-            
-            .letter-title {
-                font-size: 1.8rem;
-            }
-            
-            .letter-content {
-                font-size: 1rem;
-            }
-            
-            .letter-image {
-                width: 140px;
-                height: 140px;
-                margin: 5px 0 15px 15px;
-            }
+            .container { padding: 1.5rem; }
+            .main-title { font-size: 2.8rem; }
+            .envelope-container { width: 320px; height: 224px; }
+            .timer-unit { min-width: 120px; padding: 1.5rem 1rem; }
+            .timer-value { font-size: 2.8rem; }
+            .letter-content { padding: 0 1.5rem 2rem; }
+            .letter-paper { padding: 2rem; }
+            .letter-text { font-size: 1.05rem; }
+            .carousel-container { height: 250px; }
+            .carousel-title { font-size: 1.5rem; }
         }
 
         @media (max-width: 480px) {
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .subtitle {
-                font-size: 1rem;
-            }
-            
-            .envelope-container {
-                width: 240px;
-                height: 170px;
-            }
-            
-            .envelope-flap {
-                border-left: 120px solid transparent;
-                border-right: 120px solid transparent;
-                border-top: 85px solid #ff3333;
-            }
-            
-            .letter {
-                padding: 15px;
-            }
-            
-            .letter-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 10px;
-            }
-            
-            .letter-title {
-                font-size: 1.5rem;
-            }
-            
-            .letter-image {
-                float: none;
-                margin: 15px auto;
-                width: 160px;
-                height: 160px;
-            }
+            .main-title { font-size: 2.2rem; }
+            .subtitle { font-size: 1.1rem; }
+            .envelope-container { width: 280px; height: 196px; }
+            .love-timer { gap: 0.5rem; }
+            .timer-unit { min-width: 100px; padding: 1rem; }
+            .timer-value { font-size: 2.2rem; }
+            .timer-label { font-size: 0.8rem; }
+            .carousel-container { height: 200px; }
+            .letter-title { font-size: 2rem; }
+            .signature-name { font-size: 2.2rem; }
+            .letter-overlay { padding: 10px; }
         }
     </style>
 </head>
 <body>
+    <!-- Sfondo dinamico -->
+    <div class="dynamic-background">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
+    
+    <!-- Pioggia di cuori -->
+    <div class="heart-rain" id="heartRain"></div>
+    
+    <!-- Container principale -->
     <div class="container">
-        <h1>Il Nostro Primo Mese</h1>
-        <p class="subtitle">Dal tuo Nick 🦊 alla mia coniglietta 🐰</p>
-        
-        <div class="envelope-container" id="envelope">
-            <div class="envelope">
-                <div class="envelope-front">
-                    <div class="heart"></div>
+        <header class="header">
+            <h1 class="main-title">Quasi... 4 Mesi Insieme</h1>
+            <p class="subtitle">Dal 18 ottobre 2025 🦊🤍🐰</p>
+            
+            <!-- Timer d'amore -->
+            <div class="love-timer">
+                <div class="timer-unit">
+                    <div class="timer-value" id="days">000</div>
+                    <div class="timer-label">Giorni</div>
                 </div>
-                <div class="envelope-back"></div>
-                <div class="envelope-flap"></div>
+                <div class="timer-unit">
+                    <div class="timer-value" id="hours">00</div>
+                    <div class="timer-label">Ore</div>
+                </div>
+                <div class="timer-unit">
+                    <div class="timer-value" id="minutes">00</div>
+                    <div class="timer-label">Minuti</div>
+                </div>
+                <div class="timer-unit">
+                    <div class="timer-value" id="seconds">00</div>
+                    <div class="timer-label">Secondi</div>
+                </div>
             </div>
-        </div>
+        </header>
         
-        <p class="instructions">Clicca sulla busta per aprire la lettera</p>
+        <!-- Sezione busta -->
+        <section class="envelope-section">
+            <div class="envelope-container" id="envelope">
+                <div class="envelope">
+                    <div class="envelope-front">
+                        <div class="envelope-heart"></div>
+                    </div>
+                    <div class="envelope-back"></div>
+                    <div class="envelope-flap"></div>
+                </div>
+            </div>
+            <div class="open-instruction" id="openInstruction">
+                <i class="fas fa-envelope-open-text"></i> Apri il nostro messaggio speciale
+            </div>
+        </section>
     </div>
     
-    <div class="letter-container" id="letterContainer">
-        <div class="letter">
-            <button class="close-letter" id="closeLetter">
-                <i class="fas fa-times"></i>
-            </button>
-            
+    <!-- Overlay lettera -->
+    <div class="letter-overlay" id="letterOverlay">
+        <button class="close-letter" id="closeLetter">
+            <i class="fas fa-times"></i>
+        </button>
+        
+        <div class="letter-container">
+            <!-- Header lettera -->
             <div class="letter-header">
-                <h2 class="letter-title">Un Mese Insieme</h2>
-                <p class="letter-date">Oggi, nel nostro primo mese ❤️</p>
+                <h2 class="letter-title">Quasi... Quattro Mesi Insieme</h2>
+                <p class="letter-date">Dal 18 ottobre 2025 - Il nostro viaggio continua...</p>
             </div>
             
+            <!-- Contenuto principale -->
             <div class="letter-content">
-                <div class="letter-image">
-                    <!-- Inserisci qui il percorso della tua immagine -->
-                    <img src="https://i.imgur.com/Az3yE88.jpeg" alt="La nostra foto">
+                <!-- Carosello sopra la lettera -->
+                <div class="carousel-section">
+                    <h3 class="carousel-title"><i class="fas fa-images"></i> Il Nostro "Piccolo" Viaggio Insieme</h3>
+                    <div class="carousel-container">
+                        <div class="carousel-track" id="carouselTrack">
+                            <!-- Le slide saranno caricate via JavaScript -->
+                        </div>
+                        <button class="carousel-btn carousel-prev" id="carouselPrev">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="carousel-btn carousel-next" id="carouselNext">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <div class="carousel-nav" id="carouselNav">
+                            <!-- I dots saranno generati via JavaScript -->
+                        </div>
+                    </div>
                 </div>
                 
-                <p>Amore,</p>
+                <!-- Testo lettera -->
+                <div class="letter-paper">
+                    <div class="letter-text">
+                        <p>Mia adorata coniglietta 🐰,</p>
+                        
+                        <p>oggi celebriamo quasi quattro mesi insieme. Quattro mesi di risate condivise, complicità crescente e un amore che si fa sempre più profondo. Il tempo sembra accelerare quando si è felici, e ogni istante con te diventa un tesoro prezioso.</p>
+                        
+                        <p>Ripenso a quel lontano 18 ottobre 2025, quando tutto è iniziato. Eravamo due anime che si cercavano senza saperlo, due destini che dovevano incrociarsi. Ricordo ogni dettaglio di quella sera a casa di Fra, ogni battito, ogni sorriso, ogni parola.</p>
+                        
+                        <p>Da allora, abbiamo costruito qualcosa di bellissimo. Non è stato sempre semplice, ma ogni sfida superata ci ha reso più forti, ogni incomprensione risolta ci ha avvicinato di più. Abbiamo imparato a conoscerci nelle nostre fragilità e nelle nostre forze, a sostenerci nei momenti difficili e a gioire insieme di ogni piccola vittoria.</p>
+                        
+                        <p>Tu, con la tua dolcezza infinita, hai portato luce nella mia vita. Hai insegnato a questa vecchia volpe 🦊 ad abbassare le difese, ad aprirsi, a fidarsi. Mi hai mostrato che l'amore vero non è perfezione, ma accettazione. Non è assenza di difetti, ma volontà di crescere insieme nonostante tutto.</p>
+                        
+                        <p>In questi mesi ho scoperto lati di me che non conoscevo, ho imparato a essere migliore, più paziente, più presente. E tutto grazie a te, alla tua capacità di vedere oltre le apparenze, di cogliere l'essenza delle persone, di amare con tutto il cuore senza riserve.</p>
+                        
+                        <p>La nostra storia è come una bellissima melodia che si compone giorno dopo giorno. A volte è un ritmo lento e dolce, altre volte è un crescendo di emozioni. Ma è sempre armoniosa, sempre sincera, sempre nostra.</p>
+                        
+                        <p>Grazie per questi quattro mesi meravigliosi. Grazie per ogni mattina in cui mi fai sentire amato, per ogni sera in cui mi addormento pensando a te, per ogni momento in cui la tua presenza rende il mondo un posto migliore.</p>
+                        
+                        <p>Non vedo l'ora di vivere con te tutti i mesi e gli anni che verranno, di costruire insieme i nostri sogni, di crescere fianco a fianco. Con te ho trovato la mia casa, il mio porto sicuro, il mio amore eterno.</p>
+                        
+                        <div class="letter-signature">
+                            Per sempre tuo,
+                            <div class="signature-emojis">🦊 🤍 🐰</div>
+                            <span class="signature-name">Gabry</span>
+                        </div>
+                    </div>
+                </div>
                 
-                <p>oggi è un mese. E se ci penso davvero, non è stato un mese perfetto… ma è stato nostro. Tra litigi, chiarimenti, discorsi infiniti, momenti in cui ci siamo capiti al volo e momenti in cui sembrava di parlare lingue diverse. Eppure siamo ancora qui. Anzi, siamo più qui di prima.</p>
-                
-                <p>Perché ogni volta che discutiamo, ogni volta che esplodiamo o ci chiudiamo, alla fine torniamo. Non per abitudine, non per paura di perderci… ma perché entrambi sentiamo che vale la pena restare. Tu con quella tua dolcezza testarda, io con quel mio modo contorto da volpe che a volte confonde pure me. Eppure ci incontriamo sempre a metà.</p>
-                
-                <p>Io lo so di non essere semplice. Lo so che a volte mi incasino da solo, che mi chiudo, che reagisco male, che mi porto dietro ferite che mi fanno scattare anche quando non servirebbe. E so che ti faccio arrabbiare. Ma quello che mi colpisce ogni volta è che tu non scappi mai. Ti avvicini, mi guardi in faccia, mi dici le cose come stanno. Non molli mai il filo, nemmeno quando ti faccio perdere la pazienza.</p>
-                
-                <p>E tra una discussione e un bacio, tra un chiarimento e un "resta qui", abbiamo iniziato a costruire qualcosa che per me conta davvero. Perché sei la prima persona che mi fa sentire che anche quando litighiamo non siamo contro, siamo insieme. Siamo noi due che cerchiamo di capirci, anche quando fa male.</p>
-                
-                <p>Ed è per questo che mi torna sempre in mente quella scena che ci rappresenta senza nominarla: una coniglietta che non arretra davanti a una volpe. Una che vede oltre la furbizia, oltre la facciata, oltre tutto quello che io uso per proteggermi. E quella volpe, per la prima volta, si lascia avvicinare. Non perché è debole, ma perché ha finalmente trovato qualcuno che non la tratta come un pericolo, ma come qualcuno che vale la pena conoscere sul serio.</p>
-                
-                <p>Tu mi hai visto, davvero. Con i miei difetti, le mie paure, i miei modi strani, i miei silenzi e le mie esplosioni. E io ti vedo, con la tua dolceza, le tue insicurezze, la tua forza enorme, quella che usi per affrontarmi e affrontare il mondo allo stesso tempo. E nonostante tutto, ci scegliamo. Ogni giorno. Anche quando ci facciamo arrabbiare. Anche quando non ci capiamo subito. Anche quando sarebbe più facile chiudere e basta.</p>
-
-                <p>Un mese così non è poco. È vero. È vivo. È costruito pezzo per pezzo, parola per parola, litigio per litigio, carezza per carezza. E se questo è solo l'inizio, allora io voglio tutto il resto. I giorni belli, quelli brutti, quelli in cui ridiamo e quelli in cui ci urliamo addosso e poi ci stringiamo più forte. Voglio crescere insieme a te. Migliorare insieme a te. E restare, sempre.</p>
-                
-                <p class="letter-signature">Con tutto l'amore del tuo Nick 🦊<br>Per sempre tuo G.</p>
+                <!-- Player Spotify con iframe per la canzone corretta -->
+                <div class="music-section">
+                    <h3 class="player-title"><i class="fab fa-spotify"></i> DONNE RICCHE - TonyPitony</h3>
+                    <div class="spotify-player-container">
+                        <!-- Iframe Spotify con la canzone che hai fornito -->
+                        <iframe 
+                            src="https://open.spotify.com/embed/track/5tY8rR8cdFsQdBauMGB7nz?utm_source=generator&theme=0&autoplay=1"
+                            width="100%" 
+                            height="152" 
+                            frameBorder="0" 
+                            allowfullscreen="" 
+                            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                            loading="lazy"
+                            style="border-radius: 12px;">
+                        </iframe>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    
-    <div class="floating-hearts" id="floatingHearts"></div>
 
     <script>
-        // Apertura della busta e della lettera
-        document.getElementById('envelope').addEventListener('click', function() {
-            const envelope = this.querySelector('.envelope');
-            const letterContainer = document.getElementById('letterContainer');
+        // Data di inizio: 18 ottobre 2025 alle 22:00
+        const START_DATE = new Date('2025-10-18T22:00:00');
+        
+        // Pioggia di cuori
+        function createHeartRain() {
+            const container = document.getElementById('heartRain');
+            const heartCount = 25;
             
-            envelope.classList.add('open');
-            document.querySelector('.instructions').style.opacity = '0';
-            
-            setTimeout(() => {
-                letterContainer.classList.add('open');
-                createFloatingHearts();
-            }, 800);
-        });
-
-        // Chiusura della lettera
-        document.getElementById('closeLetter').addEventListener('click', function() {
-            const letterContainer = document.getElementById('letterContainer');
-            const envelope = document.querySelector('.envelope');
-            
-            letterContainer.classList.remove('open');
-            
-            setTimeout(() => {
-                envelope.classList.remove('open');
-                document.querySelector('.instructions').style.opacity = '1';
-            }, 300);
-        });
-
-        // Chiusura della lettera cliccando fuori
-        document.getElementById('letterContainer').addEventListener('click', function(e) {
-            if (e.target === this) {
-                const letterContainer = document.getElementById('letterContainer');
-                const envelope = document.querySelector('.envelope');
-                
-                letterContainer.classList.remove('open');
-                
-                setTimeout(() => {
-                    envelope.classList.remove('open');
-                    document.querySelector('.instructions').style.opacity = '1';
-                }, 300);
-            }
-        });
-
-        // Funzione per creare cuori fluttuanti
-        function createFloatingHearts() {
-            const container = document.getElementById('floatingHearts');
-            container.innerHTML = '';
-            
-            for (let i = 0; i < 20; i++) {
+            for (let i = 0; i < heartCount; i++) {
                 const heart = document.createElement('div');
-                heart.classList.add('floating-heart');
+                heart.classList.add('falling-heart');
+                heart.innerHTML = '<i class="fas fa-heart"></i>';
                 
-                // Posizione casuale
                 const left = Math.random() * 100;
-                const size = Math.random() * 20 + 10;
-                const duration = Math.random() * 10 + 10;
-                const delay = Math.random() * 5;
+                const size = Math.random() * 20 + 12;
+                const duration = Math.random() * 12 + 8;
+                const delay = Math.random() * 15;
+                const color = Math.random() > 0.5 ? 'var(--primary)' : 'var(--accent)';
+                const opacity = Math.random() * 0.5 + 0.3;
                 
                 heart.style.left = `${left}%`;
-                heart.style.width = `${size}px`;
-                heart.style.height = `${size}px`;
-                heart.style.animation = `float ${duration}s linear ${delay}s infinite`;
+                heart.style.fontSize = `${size}px`;
+                heart.style.color = color;
+                heart.style.opacity = opacity;
+                heart.style.animationDuration = `${duration}s`;
+                heart.style.animationDelay = `${delay}s`;
                 
                 container.appendChild(heart);
             }
         }
         
-        // Cuori fluttuanti iniziali
-        createFloatingHearts();
+        // Timer d'amore
+        function updateLoveTimer() {
+            const now = new Date();
+            const diff = now - START_DATE;
+            
+            if (diff < 0) {
+                document.getElementById('days').textContent = '000';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+                return;
+            }
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days.toString().padStart(3, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
         
-        // Aggiungi musica di sottofondo (opzionale)
-        const audio = new Audio();
-        audio.src = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"; // Sostituisci con un file audio romantico
-        audio.loop = true;
+        // Carosello immagini
+        const carouselSlides = [
+            {
+                image: 'https://i.ibb.co/sv2nRmVL/IMG-20250923-WA0060.jpg',
+                title: 'Il primo cinema insieme',
+                date: '23 Settembre 2025'
+            },
+            {
+                image: 'https://i.ibb.co/21j70V9C/IMG-20260129-WA0091.jpg',
+                title: 'Il primo sushi insieme',
+                date: '30 Luglio 2025'
+            },
+            {
+                image: 'https://i.ibb.co/ns3m4Pjg/IMG-20251118-WA0029-1.jpg',
+                title: 'Il primo pigiama party insieme',
+                date: '31 Ottobre 2025'
+            },
+            {
+                image: 'https://i.ibb.co/wDBHGBr/IMG-20251101-WA0047.jpg',
+                title: 'Il primo rapimento',
+                date: '31 Ottobre 2025'
+            },
+            {
+                image: 'https://i.ibb.co/vvHxDp00/IMG-20250913-WA0042.jpg',
+                title: 'Primo comics insieme',
+                date: '13 Settembre 2025'
+            }
+        ];
         
-        // Avvia la musica quando si apre la lettera
-        document.getElementById('envelope').addEventListener('click', function() {
-            // audio.play().catch(e => console.log("Autoplay non permesso senza interazione utente"));
+        let currentSlide = 0;
+        let autoScrollInterval;
+        
+        function initCarousel() {
+            const carouselTrack = document.getElementById('carouselTrack');
+            const carouselNav = document.getElementById('carouselNav');
+            
+            // Crea slides
+            carouselSlides.forEach((slide, index) => {
+                const slideElement = document.createElement('div');
+                slideElement.classList.add('carousel-slide');
+                
+                const img = document.createElement('img');
+                img.src = slide.image;
+                img.alt = slide.title;
+                img.loading = 'lazy';
+                
+                const overlay = document.createElement('div');
+                overlay.classList.add('slide-overlay');
+                overlay.innerHTML = `
+                    <div class="slide-title">${slide.title}</div>
+                    <div class="slide-date">${slide.date}</div>
+                `;
+                
+                slideElement.appendChild(img);
+                slideElement.appendChild(overlay);
+                carouselTrack.appendChild(slideElement);
+                
+                // Crea dots di navigazione
+                const dot = document.createElement('div');
+                dot.classList.add('carousel-dot');
+                if (index === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => {
+                    goToSlide(index);
+                    resetAutoScroll();
+                });
+                carouselNav.appendChild(dot);
+            });
+            
+            // Auto-scroll
+            function startAutoScroll() {
+                autoScrollInterval = setInterval(() => {
+                    if (document.getElementById('letterOverlay').classList.contains('active')) {
+                        nextSlide();
+                    }
+                }, 5000);
+            }
+            
+            function resetAutoScroll() {
+                clearInterval(autoScrollInterval);
+                startAutoScroll();
+            }
+            
+            startAutoScroll();
+            
+            // Pausa auto-scroll al passaggio del mouse
+            const carouselContainer = document.querySelector('.carousel-container');
+            carouselContainer.addEventListener('mouseenter', () => {
+                clearInterval(autoScrollInterval);
+            });
+            
+            carouselContainer.addEventListener('mouseleave', () => {
+                startAutoScroll();
+            });
+        }
+        
+        function goToSlide(index) {
+            currentSlide = index;
+            const carouselTrack = document.getElementById('carouselTrack');
+            const dots = document.querySelectorAll('.carousel-dot');
+            
+            carouselTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentSlide);
+            });
+        }
+        
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % carouselSlides.length;
+            goToSlide(currentSlide);
+        }
+        
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + carouselSlides.length) % carouselSlides.length;
+            goToSlide(currentSlide);
+        }
+        
+        // Gestione apertura busta
+        function initEnvelope() {
+            const envelope = document.querySelector('.envelope');
+            const overlay = document.getElementById('letterOverlay');
+            const openBtn = document.getElementById('openInstruction');
+            
+            function openLetter() {
+                envelope.classList.add('open');
+                openBtn.style.opacity = '0';
+                openBtn.style.pointerEvents = 'none';
+                
+                setTimeout(() => {
+                    overlay.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }, 1000);
+            }
+            
+            function closeLetter() {
+                overlay.classList.remove('active');
+                
+                setTimeout(() => {
+                    envelope.classList.remove('open');
+                    openBtn.style.opacity = '1';
+                    openBtn.style.pointerEvents = 'auto';
+                    document.body.style.overflow = 'auto';
+                }, 300);
+            }
+            
+            document.getElementById('envelope').addEventListener('click', openLetter);
+            openBtn.addEventListener('click', openLetter);
+            
+            // Chiusura lettera
+            document.getElementById('closeLetter').addEventListener('click', closeLetter);
+            overlay.addEventListener('click', function(e) {
+                if (e.target === this) closeLetter();
+            });
+            
+            // Tasto ESC per chiudere
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && overlay.classList.contains('active')) {
+                    closeLetter();
+                }
+            });
+            
+            // Controlli del carosello
+            document.getElementById('carouselPrev').addEventListener('click', () => {
+                prevSlide();
+                if (autoScrollInterval) clearInterval(autoScrollInterval);
+                setTimeout(() => {
+                    autoScrollInterval = setInterval(() => {
+                        if (document.getElementById('letterOverlay').classList.contains('active')) {
+                            nextSlide();
+                        }
+                    }, 5000);
+                }, 100);
+            });
+            
+            document.getElementById('carouselNext').addEventListener('click', () => {
+                nextSlide();
+                if (autoScrollInterval) clearInterval(autoScrollInterval);
+                setTimeout(() => {
+                    autoScrollInterval = setInterval(() => {
+                        if (document.getElementById('letterOverlay').classList.contains('active')) {
+                            nextSlide();
+                        }
+                    }, 5000);
+                }, 100);
+            });
+        }
+        
+        // Inizializzazione
+        document.addEventListener('DOMContentLoaded', function() {
+            createHeartRain();
+            updateLoveTimer();
+            initCarousel();
+            initEnvelope();
+            
+            // Aggiorna timer ogni secondo
+            setInterval(updateLoveTimer, 1000);
         });
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
